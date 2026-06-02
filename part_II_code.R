@@ -53,7 +53,7 @@ W <- scale(rt(n, df = 4)) + scale(runif(n)) +
 W <- W/8
 P <- W + rgamma(n, shape = 1, rate = 1) # observed regressor
 
-Y <- 3 + 1 * P + 1 * W + xi
+Y <- 3 + 1 * P + 1 * W
 data1 <- as.data.frame(cbind(Y, P, W))
 colnames(data1) <- c("Y", "P", "W")
 
