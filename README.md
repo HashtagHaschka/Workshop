@@ -1,4 +1,4 @@
-# AOM-Workshop 2025: Addressing endogeneity in observational data models with Copula-based methods
+# Workshop: Addressing endogeneity in observational data models with Copula-based methods
 
 ### Link to R code for copula-based endogeneity corrections (with examples)
 https://github.com/HashtagHaschka/Copula-based-endogeneity-corrections
