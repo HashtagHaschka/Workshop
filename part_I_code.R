@@ -5,13 +5,13 @@
 # =============================================
 
 
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopReg2sCOPE-np_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopReg2sCOPE_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopRegBMW_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopRegIMA_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopRegJAMS_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/CopRegPG_workshop.R")
-source("https://raw.githubusercontent.com/HashtagHaschka/AOM-Workshop/functions/ICAreg_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopReg2sCOPE-np_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopReg2sCOPE_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopRegBMW_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopRegIMA_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopRegJAMS_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/CopRegPG_workshop.R")
+source("https://raw.githubusercontent.com/HashtagHaschka/Workshop/functions/ICAreg_workshop.R")
 
 
 # --------------------------- #
@@ -94,12 +94,12 @@ summary(ols_model)  # Coefficients of both X and P are biased
 
 # Estimate with Haschka (2024) method
 haschka_model <- CopRegIMA(formula = Y ~ P | X,
-                          data = data1, cdf = "ecdf")
+                           data = data1, cdf = "ecdf")
 haschka_model[[1]]
 
 # Estimate with 2sCOPE method
 twoscope_model <- CopReg2sCOPE(formula = Y ~ P | X,
-                              data = data1, cdf = "ecdf")
+                               data = data1, cdf = "ecdf")
 twoscope_model[[1]]
 
 # Estimate with Park-Gupta
@@ -133,9 +133,9 @@ P <- numeric(n)
 xi <- numeric(n)
 
 latent1 <- mvtnorm::rmvnorm(n/2, mean = c(0, 0), 
-                           sigma = matrix(c(1, rho1, rho1, 1), ncol = 2))
+                            sigma = matrix(c(1, rho1, rho1, 1), ncol = 2))
 latent2 <- mvtnorm::rmvnorm(n/2, mean = c(0, 0), 
-                           sigma = matrix(c(1, rho2, rho2, 1), ncol = 2))
+                            sigma = matrix(c(1, rho2, rho2, 1), ncol = 2))
 
 P <- c(qexp(pnorm(latent1[, 1]), rate = 0.5), 
        qunif(pnorm(latent2[, 1])))
@@ -157,7 +157,7 @@ pg_model[[1]]
 
 # Estimate with Liengaard et al.
 liengaard_model <- CopRegJAMS(formula = Y ~ P | as.factor(X),
-                       data = data1, cdf = "ecdf")
+                              data = data1, cdf = "ecdf")
 liengaard_model[[1]]
 
 # Estimate with Hu et al.
@@ -198,7 +198,7 @@ mod_IMA[[1]]
 # Fit 2sCOPE
 mod_2sCOPE <- CopReg2sCOPE(...)
 mod_2sCOPE[[1]]
-  
+
 # Fit Liengaard et al. (2025)
 mod_JAMS <- CopRegJAMS(...)
 mod_JAMS[[1]]
@@ -249,7 +249,6 @@ summary(mod1) # bias because of omitted variable
 
 # Estimate with 2sCOPE
 scope_model <- CopReg2sCOPE(formula = Y ~ P | X,
-                     data = data1, cdf = "ecdf")
+                            data = data1, cdf = "ecdf")
 scope_model[[1]] # still biased
-
 
